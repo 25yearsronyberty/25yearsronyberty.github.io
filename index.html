@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25th Anniversary — Rony & Berty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════
+     COVER SCREEN
+══════════════════════════════════════════ -->
+    <div id="cover" class="cover">
+        <div class="cover-overlay"></div>
+        <div class="cover-particles" id="particles"></div>
+
+        <div class="cover-content">
+            <div class="cover-badge">Silver Anniversary</div>
+            <div class="ring-ornament">
+                <!-- <div class="ring ring-left"></div>
+                <div class="ring ring-right"></div> -->
+                <span class="cover-names">25</span>
+            </div>
+            <h1 class="cover-names">Rony <span class="amp">&amp;</span> Berty</h1>
+            <p class="cover-sub">Merayakan 25 Tahun Cinta Yang Indah</p>
+            <div class="cover-date-line">
+                <span class="line-dec"></span>
+                <span class="cover-date-text">Sabtu, 19 Juli 2026</span>
+                <span class="line-dec"></span>
+            </div>
+
+            <div class="guest-greeting" id="guestGreeting" style="display:none;">
+                <p>Kepada Yth.</p>
+                <p class="guest-name" id="guestName"></p>
+            </div>
+
+            <button class="btn-open" id="btnOpen" onclick="openInvitation()">
+                <span class="btn-icon">✉</span>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+     MAIN INVITATION
+══════════════════════════════════════════ -->
+    <div id="invitation" class="invitation hidden">
+
+        <!-- Audio Player -->
+        <div class="music-bar" id="musicBar">
+            <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+                <span id="musicIcon">♪</span>
+            </button>
+            <span class="music-label">Thousand Years</span>
+            <div class="music-waves" id="musicWaves">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="backsound.mp3" type="audio/mpeg" />
+        </audio>
+
+        <!-- ── HERO ── -->
+        <section class="hero-section">
+            <div class="hero-ornament-top">✦ ✦ ✦</div>
+            <p class="hero-eyebrow">Dengan Penuh Syukur & Kebahagiaan</p>
+            <h2 class="hero-names">Rony <em>&</em> Berty</h2>
+            <p class="hero-tagline">Merayakan 25 Tahun Pernikahan</p>
+            <div class="hero-subtitle">Silver Anniversary</div>
+            <div class="hero-ornament-bottom">— ✦ —</div>
+        </section>
+
+        <!-- ── COUNTDOWN ── -->
+        <section class="section countdown-section">
+            <div class="section-label">Menuju Hari Bahagia</div>
+            <h3 class="section-title">Hitung Mundur</h3>
+            <div class="countdown-grid">
+                <div class="countdown-item"><span id="cdDays">00</span><label>Hari</label></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item"><span id="cdHours">00</span><label>Jam</label></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item"><span id="cdMins">00</span><label>Menit</label></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-item"><span id="cdSecs">00</span><label>Detik</label></div>
+            </div>
+            <p class="countdown-sub">Sabtu, 19 Juli 2026 — Pukul 18.00 WIB</p>
+        </section>
+
+        <!-- ── SIAPA YANG DIUNDANG ── -->
+        <section class="section invited-section">
+            <div class="section-label">Undangan Spesial</div>
+            <h3 class="section-title">Kepada Yang Terhormat</h3>
+            <div class="invited-card" id="invitedCard">
+                <div class="invited-envelope">✉</div>
+                <p class="invited-label">Undangan ini ditujukan kepada</p>
+                <h2 class="invited-name" id="invitedName">Bapak/Ibu/Sdr/i</h2>
+                <p class="invited-note" id="invitedNote">
+                    Kami dengan penuh kebahagiaan mengundang Anda untuk turut merayakan
+                    momen istimewa bersama kami.
+                </p>
+            </div>
+        </section>
+
+        <!-- ── DETAIL ACARA ── -->
+        <section class="section event-section">
+            <div class="section-label">Informasi Acara</div>
+            <h3 class="section-title">Detail Perayaan</h3>
+            <div class="event-cards">
+                <div class="event-card">
+                    <div class="event-icon">🕕</div>
+                    <h4>Waktu</h4>
+                    <p>Sabtu, 19 Juli 2026</p>
+                    <p>Pukul 18.00 – 22.00 WIB</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">📍</div>
+                    <h4>Tempat</h4>
+                    <p>Kenari Asri Hotel lt.3</p>
+                    <p>Jl. Kenari No.2, Magersari, Panjunan, Kec. Kota Kudus</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">👗</div>
+                    <h4>Dress Code</h4>
+                    <p>Jangan lebih effort</p>
+                    <p>dari r&b bro</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── TIMELINE ── -->
+        <section class="section timeline-section">
+            <div class="section-label">Perjalanan Cinta</div>
+            <h3 class="section-title">Cerita Kami</h3>
+            <div class="timeline">
+
+                <div class="tl-item tl-left">
+                    <div class="tl-content">
+                        <div class="tl-year">2000</div>
+                        <h4>Pertama Bertemu</h4>
+                        <p>Pertemuan tak terduga di kampus UI. Satu tatapan yang mengubah segalanya.</p>
+                    </div>
+                    <div class="tl-dot"><span>💛</span></div>
+                </div>
+
+                <div class="tl-item tl-right">
+                    <div class="tl-content">
+                        <div class="tl-year">2000</div>
+                        <h4>Jatuh Cinta</h4>
+                        <p>Berbulan-bulan berjalan bersama, kami menyadari ini lebih dari sekadar persahabatan.</p>
+                    </div>
+                    <div class="tl-dot"><span>💕</span></div>
+                </div>
+
+                <div class="tl-item tl-left">
+                    <div class="tl-content">
+                        <div class="tl-year">2000</div>
+                        <h4>Pertunangan</h4>
+                        <p>Di tepi pantai Bali saat sunset, Rony berlutut dengan cincin dan kata-kata yang tak
+                            terlupakan.</p>
+                    </div>
+                    <div class="tl-dot"><span>💍</span></div>
+                </div>
+
+                <div class="tl-item tl-right">
+                    <div class="tl-content">
+                        <div class="tl-year">2001</div>
+                        <h4>Pernikahan</h4>
+                        <p>3 Juni 2001 — Hari paling sakral. Janji suci diucapkan, dua menjadi satu.</p>
+                    </div>
+                    <div class="tl-dot"><span>👰</span></div>
+                </div>
+
+                <div class="tl-item tl-left">
+                    <div class="tl-content">
+                        <div class="tl-year">2002</div>
+                        <h4>Buah Hati Pertama</h4>
+                        <p>Kehadiran Cecilia menjadikan rumah kami surga kecil yang penuh tawa.</p>
+                    </div>
+                    <div class="tl-dot"><span>👶</span></div>
+                </div>
+
+                <div class="tl-item tl-right">
+                    <div class="tl-content">
+                        <div class="tl-year">2006</div>
+                        <h4>Keluarga Bertambah</h4>
+                        <p>Si kecil W hadir, melengkapi kebahagiaan keluarga kami yang hangat.</p>
+                    </div>
+                    <div class="tl-dot"><span>🌸</span></div>
+                </div>
+
+                <div class="tl-item tl-left">
+                    <div class="tl-content">
+                        <div class="tl-year">2015</div>
+                        <h4>Rumah Baru</h4>
+                        <p>Pindah ke rumah impian yang kami bangun bersama, sepotong surga milik kita.</p>
+                    </div>
+                    <div class="tl-dot"><span>🏠</span></div>
+                </div>
+
+                <div class="tl-item tl-right">
+                    <div class="tl-content">
+                        <div class="tl-year">2026</div>
+                        <h4>Silver Anniversary</h4>
+                        <p>25 tahun cinta, tawa, dan petualangan. Merayakan setiap momen berharga bersama.</p>
+                    </div>
+                    <div class="tl-dot tl-dot-gold"><span>⭐</span></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── GALERI ── -->
+        <section class="section gallery-section">
+            <div class="section-label">Kenangan Berharga</div>
+            <h3 class="section-title">Galeri Foto</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item g-tall" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Wedding" />
+                    <div class="gallery-overlay"><span>Hari Pernikahan</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80" alt="Couple" />
+                    <div class="gallery-overlay"><span>Honeymoon</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1529682316-7b85f8b02e1e?w=600&q=80" alt="Family" />
+                    <div class="gallery-overlay"><span>Keluarga</span></div>
+                </div>
+                <div class="gallery-item g-wide" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+                        alt="Anniversary" />
+                    <div class="gallery-overlay"><span>10th Anniversary</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Travel" />
+                    <div class="gallery-overlay"><span>Liburan Bersama</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80" alt="Now" />
+                    <div class="gallery-overlay"><span>Sekarang</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <button class="lightbox-prev" onclick="event.stopPropagation(); changeLightbox(-1)">&#10094;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+            <button class="lightbox-next" onclick="event.stopPropagation(); changeLightbox(1)">&#10095;</button>
+        </div>
+
+        <!-- ── GOOGLE MAPS ── -->
+        <section class="section map-section">
+            <div class="section-label">Lokasi Venue</div>
+            <h3 class="section-title">Temukan Kami Di Sini</h3>
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4711.2443458207645!2d110.84021111192737!3d-6.810118977958942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70c4c37450af61%3A0x89b38736035e7b3e!2sKenari%20Asri%20Hotel!5e0!3m2!1sid!2sid!4v1782312946167!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <a class="btn-maps" href="https://maps.app.goo.gl/g7XybLfcaFbwAyEU7" target="_blank">
+                📍 Buka di Google Maps
+            </a>
+        </section>
+
+        <!-- ── FORM UCAPAN ── -->
+        <section class="section wishes-section">
+            <div class="section-label">Doa & Harapan</div>
+            <h3 class="section-title">Tulis Ucapan Anda</h3>
+
+            <form class="wish-form" id="wishForm" onsubmit="submitWish(event)">
+                <div class="form-group">
+                    <label for="wishMsg">Pesan & Ucapan</label>
+                    <textarea id="wishMsg" placeholder="Tuliskan doa dan harapan terbaik Anda..." rows="4"
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                    <span id="btnSubmitText">Kirim Ucapan 💌</span>
+                </button>
+                <div class="form-note">
+                    * Ucapan akan tersimpan di Google Sheets kami
+                </div>
+            </form>
+
+            <div class="wish-success hidden" id="wishSuccess">
+                <div class="wish-success-icon">💌</div>
+                <h4>Terima Kasih!</h4>
+                <p>Ucapan Anda telah kami terima dengan sepenuh hati.</p>
+            </div>
+
+            <!-- Tampilan ucapan yang masuk -->
+            <div class="wishes-list" id="wishesList">
+                <h4 class="wishes-list-title">Ucapan Terbaru</h4>
+                <div id="wishesContainer"></div>
+            </div>
+        </section>
+
+        <!-- ── FOOTER ── -->
+        <footer class="footer">
+            <div class="footer-ornament">✦ ✦ ✦</div>
+            <h3 class="footer-names">Rony &amp; Berty</h3>
+            <p class="footer-quote">"Cinta bukan tentang menemukan orang sempurna,<br />melainkan tentang melihat orang
+                tidak sempurna dengan sempurna."</p>
+            <p class="footer-year">2001 — 2026</p>
+            <div class="footer-hearts">
+                <span class="heart-anim">♥</span>
+                <span class="heart-anim delay-1">♥</span>
+                <span class="heart-anim delay-2">♥</span>
+            </div>
+        </footer>
+
+    </div><!-- /invitation -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
