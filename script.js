@@ -68,7 +68,7 @@ function toggleMusic() {
 function startCountdown() {
 
     // GANTI TANGGAL ACARA
-    const target = new Date("July 19, 2026 18:00:00").getTime();
+    const target = new Date("July 19, 2026 17:30:00").getTime();
 
     const timer = setInterval(() => {
 
@@ -165,30 +165,39 @@ function changeLightbox(direction) {
 async function submitWish(event) {
     event.preventDefault();
 
-    const pesan = document.getElementById("wishMsg").value;
+    const kehadiran = document.getElementById("wishKehadiran").value;
+    const pesan = document.getElementById("wishMsg").value.trim();
     const tamu = guest || "Tamu Tanpa Nama";
+
+    if (!kehadiran) {
+        alert("Mohon pilih konfirmasi kehadiran terlebih dahulu");
+        return;
+    }
 
     try {
         const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbzVFigv_qaq0nHSerxrM4FaPXXz8HVSShkKGc26y7Wz9K37WfGeVNrfV_YGwwTfQaZq/exec",
+            "https://script.google.com/macros/s/AKfycbyXK0y8kJ1dlVVAp6KwAGavpo6ZRF4Otsmtud8e_wyWRQsJ-3-CUF5pszOSPJjLSHVt/exec",
             {
                 method: "POST",
-                body: JSON.stringify({ tamu: tamu, pesan: pesan })
+                body: JSON.stringify({ tamu: tamu, kehadiran: kehadiran, pesan: pesan })
             }
         );
 
         const result = await response.json();
 
         if (result.success) {
-            const container = document.getElementById("wishesContainer");
-            const card = document.createElement("div");
-            card.className = "wish-card";
-            card.innerHTML = `
-                <p class="wish-name">${tamu}</p>
-                <p class="wish-text">${pesan}</p>
-                <p class="wish-time">Baru saja</p>
-            `;
-            container.prepend(card);
+            // Hanya tampilkan card kalau ada pesan
+            if (pesan.length > 0) {
+                const container = document.getElementById("wishesContainer");
+                const card = document.createElement("div");
+                card.className = "wish-card";
+                card.innerHTML = `
+                    <p class="wish-name">${tamu}</p>
+                    <p class="wish-text">${pesan}</p>
+                    <p class="wish-time">Baru saja</p>
+                `;
+                container.prepend(card);
+            }
 
             document.getElementById("wishForm").reset();
             document.getElementById("wishSuccess").classList.remove("hidden");
@@ -200,17 +209,21 @@ async function submitWish(event) {
 
     } catch (err) {
         console.error(err);
-        alert("Gagal mengirim ucapan");
+        alert("Gagal mengirim data");
     }
 }
 
 async function loadWishes() {
     try {
         const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbzVFigv_qaq0nHSerxrM4FaPXXz8HVSShkKGc26y7Wz9K37WfGeVNrfV_YGwwTfQaZq/exec"
+            "https://script.google.com/macros/s/AKfycbyXK0y8kJ1dlVVAp6KwAGavpo6ZRF4Otsmtud8e_wyWRQsJ-3-CUF5pszOSPJjLSHVt/exec"
         );
 
-        const wishes = await response.json();
+        const allData = await response.json();
+
+        // Filter: hanya yang isi pesan yang ditampilkan
+        const wishes = allData.filter(item => item.pesan && item.pesan.trim().length > 0);
+
         const container = document.getElementById("wishesContainer");
         const LIMIT = 5;
         let showing = LIMIT;
@@ -228,7 +241,6 @@ async function loadWishes() {
                 container.appendChild(card);
             });
 
-            // Tombol load more
             if (showing < wishes.length) {
                 const btn = document.createElement("button");
                 btn.textContent = `Lihat lebih banyak (${wishes.length - showing} lainnya)`;
