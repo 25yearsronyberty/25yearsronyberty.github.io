@@ -35,12 +35,15 @@ function openInvitation() {
     invitation.classList.remove("hidden");
 
     const music = document.getElementById("bgMusic");
-
     music.play().catch(() => {
         console.log("Autoplay diblok browser");
     });
 
     startCountdown();
+
+    // Tampilkan floating button + mulai observer
+    document.getElementById("floatingRsvp").style.display = "flex";
+    initFloatingRsvp();
 }
 
 // ======================
@@ -121,12 +124,12 @@ function startCountdown() {
 // LIGHTBOX
 // ======================
 const galleryImages = [
-    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200",
-    "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1200",
-    "https://images.unsplash.com/photo-1529682316-7b85f8b02e1e?w=1200",
-    "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200",
-    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200",
-    "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1200"
+    "img1.jpg",
+    "img2.jpg",
+    "img3.jpg",
+    "img4.jpg",
+    "img5.jpg",
+    "img6.jpeg"
 ];
 
 let currentImage = 0;
@@ -333,3 +336,56 @@ function timeAgo(dateStr) {
 }
 
 loadWishes();
+
+function scrollToWishForm() {
+    document.getElementById("wishKehadiran").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+    // optional: fokus otomatis ke dropdown
+    setTimeout(() => {
+        document.getElementById("wishKehadiran").focus();
+    }, 500);
+}
+
+// Sembunyikan floating button kalau user udah scroll sampai form / udah submit
+function initFloatingRsvp() {
+    const btn = document.getElementById("floatingRsvp");
+    const formSection = document.querySelector(".wishes-section");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            btn.style.display = entry.isIntersecting ? "none" : "flex";
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(formSection);
+}
+
+let hasSubmitted = false;
+let reminderShown = false;
+
+window.addEventListener("scroll", () => {
+    if (hasSubmitted || reminderShown) return;
+
+    const scrolled = window.scrollY + window.innerHeight;
+    const pageHeight = document.body.scrollHeight;
+
+    // Kalau udah scroll lewat 70% halaman tapi belum submit
+    if (scrolled / pageHeight > 0.7) {
+        showReminderToast();
+        reminderShown = true;
+    }
+});
+
+function showReminderToast() {
+    const toast = document.createElement("div");
+    toast.className = "rsvp-toast";
+    toast.innerHTML = `
+        <span>Jangan lupa konfirmasi kehadiran ya! 💌</span>
+        <button onclick="scrollToWishForm(); this.parentElement.remove();">Isi Sekarang</button>
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 8000);
+}
