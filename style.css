@@ -1627,3 +1627,64 @@ INVITED SECTION
             align-self: flex-end;
         }
     }
+
+    /* ══════════════════════════════════════════
+   COVER NAMES — mobile line break
+══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+        .cover-names .name-part {
+            display: block;
+            line-height: 1.1;
+        }
+
+        .cover-names .amp {
+            display: block;
+            line-height: 1.1;
+        }
+    }
+
+    /* ══════════════════════════════════════════
+   HERO NAMES — mobile line break
+══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+        .hero-names .name-part {
+            display: block;
+            line-height: 1.1;
+        }
+
+        .hero-names .amp {
+            display: block;
+            line-height: 1.1;
+        }
+    }
+
+    /* ══════════════════════════════════════════
+   FOOTER NAMES — mobile line break
+══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+        .footer-names .name-part {
+            display: block;
+            line-height: 1.1;
+        }
+
+        .footer-names .amp {
+            display: block;
+            line-height: 1.1;
+        }
+    }
+
+    .form-attend-note {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+        background: rgba(168, 184, 200, 0.08);
+        border: 1px solid rgba(168, 184, 200, 0.18);
+        border-radius: 0.4rem;
+        padding: 0.35rem 0.75rem;
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.03em;
+    }
+
+    .form-attend-note strong {
+        color: var(--gold2);
+        font-weight: 700;
+    }
